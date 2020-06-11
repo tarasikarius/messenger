@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 3300:3306
+
+#    rabbitmq:
+#        image: rabbitmq:3.7-management
+#        ports: [5672, 15672]

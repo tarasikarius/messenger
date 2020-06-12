@@ -9,14 +9,18 @@ framework:
 
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
-             async:
+            async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 retry_strategy:
                     delay: 500
-             failed: 'doctrine://default?queue_name=failed'
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: high
+            failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
             # Route your messages to the transports
-             'App\Message\AddPonkaToImage': async
-             'App\Message\DeleteImageFile': async
+            'App\Message\AddPonkaToImage': async_priority_high
+            'App\Message\DeleteImageFile': async

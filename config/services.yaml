@@ -40,4 +40,9 @@ services:
         autoconfigure: false
         tags: [{ name: messenger.message_handler, bus: event.bus}]
 
+    App\MessageHandler\Query\:
+        resource: '../src/MessageHandler/Query'
+        autoconfigure: false
+        tags: [{ name: messenger.message_handler, bus: query.bus}]
+
     Intervention\Image\ImageManager: ~

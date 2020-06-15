@@ -12,6 +12,9 @@ down:
 	docker-compose down
 .PHONY: up stop down
 
+db_init:
+	bin/console doctrine:database:create
+	bin/console doctrine:schema:update --force
 db:
 	docker exec -it messenger_db_1 mysql -u${DB_USER} -p${DB_PASSWORD} ${DB_NAME}
-.PHONY: db
+.PHONY: db db_init
